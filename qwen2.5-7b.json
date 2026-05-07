@@ -1,0 +1,13 @@
+{
+    "name": "Qwen2.5-7B-Instruct",
+    "P": 6.33,
+    "Q": 0.5,
+    "H": 3584,
+    "L": 2048,
+    "B": 1,
+    "N_h": 28,
+    "N_layer": 28,
+    "kv_heads": 4,
+    "intermediate_size": 18944,
+    "vocab_size": 152064
+}
