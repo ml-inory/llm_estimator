@@ -11,7 +11,7 @@ def estimate_hardware(model_params, tpot, ttft):
     N_layer = model_params['N_layer']   # e.g., 32
     
     # 1. 计算Decode阶段所需带宽 (GB/s)
-    kv_cache_size = 2 * H * N_layer * 2 / 1e9  # FP16 KV cache in GB
+    kv_cache_size = 2 * H * L * N_layer * 2 / 1e9  # FP16 KV cache in GB
     weight_size = P * Q / 1e9  # Weight in GB
     total_mem_per_token = weight_size + kv_cache_size
     bandwidth_req = total_mem_per_token / (tpot / 1000)
