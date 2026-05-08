@@ -1,15 +1,17 @@
 import json
 import argparse
 
+
 def estimate_hardware(model_params, target_latency_ms):
     P = model_params['P']  # e.g., 7e9
     Q = model_params['Q']  # e.g., 0.5 (4bit)
     H = model_params['H']  # e.g., 4096
     L = model_params['L']  # e.g., 2048
     B = model_params['B']  # e.g., 1
+    N_layer = model_params['N_layer']   # e.g., 32
     
     # 1. 计算Decode阶段所需带宽 (GB/s)
-    kv_cache_size = 2 * L * H * 2 / 1e9  # FP16 KV cache in GB
+    kv_cache_size = 2 * L * H * N_layer * 2 / 1e9  # FP16 KV cache in GB
     weight_size = P * Q / 1e9  # Weight in GB
     total_mem_per_token = weight_size + kv_cache_size
     bandwidth_req = total_mem_per_token / (target_latency_ms / 1000)
